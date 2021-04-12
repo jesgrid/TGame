@@ -1,0 +1,4 @@
+/Users/ba_980/Desktop/test/SecondProject.dll
+/Users/ba_980/Desktop/test/SecondProject.deps.json
+/Users/ba_980/Desktop/test/SecondProject.runtimeconfig.json
+/Users/ba_980/Desktop/test/SecondProject.pdb
