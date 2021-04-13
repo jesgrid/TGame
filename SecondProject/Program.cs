@@ -2,7 +2,7 @@
 using MapsAll;
 using FramePainterAll;
 using MovementAll;
-using static SecondProject.Move;
+using Doing;
 
 namespace SecondProject
 {
@@ -10,49 +10,48 @@ namespace SecondProject
     {
         static void Main(string[] args)
         {
-            ConsoleKeyInfo cki;
-            int xPlayer = 4000;
-            int yPlayer = 4000;
-            bool obstruction = false;
-            Move move;
-            string[,] field = new string[8000, 8000];
-            string[,] fieldGhost = new string[8000, 8000];
+            ConsoleKeyInfo key; 
+            int mapSize = 380; // Сторона квадрата карты
+            int xPlayer = mapSize / 2; // Позиция грока
+            int yPlayer = mapSize / 2;
+            string[,] field = new string[mapSize, mapSize]; // Основное поле
+            string[,] fieldGhost = new string[mapSize, mapSize]; // Вспомогательное поле для восстановления основного после изменений
 
-            Maps.FieldGenerator(field);
+            Maps.FieldGenerator(field, mapSize); //Генерация карты
             Array.Copy(field, fieldGhost, field.Length);
-            Console.WriteLine(fieldGhost[xPlayer, yPlayer]);
-
             field[xPlayer, yPlayer] = "Ṽ";
-
-            FramePainter.FieldPainter(xPlayer, yPlayer, field);
+            field[xPlayer + 5, yPlayer] = "█";
+            FramePainter.FieldPainter(xPlayer, yPlayer, field); // Прорисовка первого кадра
             
             do
             {
-                
-                cki = Console.ReadKey();
-                switch (cki.Key.ToString())
+                Move move = Move.moveOnPoint;
+                key = Console.ReadKey();
+                switch (key.Key.ToString())
                 {
                     case "W" or "UpArrow":
-                        move = moveUp;
-                        (xPlayer, yPlayer) = Movement.PlayerMove(xPlayer, yPlayer, move, field, fieldGhost, obstruction);
+                        move = Move.moveUp;
                         break;
                     case "S" or "DownArrow":
-                        move = moveDown;
-                        (xPlayer, yPlayer) = Movement.PlayerMove(xPlayer, yPlayer, move, field, fieldGhost, obstruction);
+                        move = Move.moveDown;
                         break;
                     case "A" or "LeftArrow":
-                        move = moveLeft;
-                        (xPlayer, yPlayer) = Movement.PlayerMove(xPlayer, yPlayer, move, field, fieldGhost, obstruction);
+                        move = Move.moveLeft;
                         break;
                     case "D" or "RightArrow":
-                        move = moveRight;
-                        (xPlayer, yPlayer) = Movement.PlayerMove(xPlayer, yPlayer, move, field, fieldGhost, obstruction);
+                        move = Move.moveRight;
+                        break;
+                    case "Spacebar":
                         break;
                     default:
-                        Console.WriteLine("FKU!");
                         break;
                 }
-            } while (cki.Key != ConsoleKey.Escape);
+
+                Console.Clear();
+                Console.WriteLine(key.Key.ToString());
+                (xPlayer, yPlayer) = Movement.PlayerMove(xPlayer, yPlayer, move, field, fieldGhost);
+
+            } while (key.Key != ConsoleKey.Escape);
             return;
         }
     }

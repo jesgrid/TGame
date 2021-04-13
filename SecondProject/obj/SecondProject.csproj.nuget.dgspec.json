@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ba_980/Desktop/SecondProject/SecondProject/SecondProject/SecondProject.csproj": {}
+    "/Users/ba_980/Desktop/tgame/SecondProject/SecondProject.csproj": {}
   },
   "projects": {
-    "/Users/ba_980/Desktop/SecondProject/SecondProject/SecondProject/SecondProject.csproj": {
+    "/Users/ba_980/Desktop/tgame/SecondProject/SecondProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ba_980/Desktop/SecondProject/SecondProject/SecondProject/SecondProject.csproj",
+        "projectUniqueName": "/Users/ba_980/Desktop/tgame/SecondProject/SecondProject.csproj",
         "projectName": "SecondProject",
-        "projectPath": "/Users/ba_980/Desktop/SecondProject/SecondProject/SecondProject/SecondProject.csproj",
+        "projectPath": "/Users/ba_980/Desktop/tgame/SecondProject/SecondProject.csproj",
         "packagesPath": "/Users/ba_980/.nuget/packages/",
-        "outputPath": "/Users/ba_980/Desktop/SecondProject/SecondProject/SecondProject/obj/",
+        "outputPath": "/Users/ba_980/Desktop/tgame/SecondProject/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/ba_980/.config/NuGet/NuGet.Config"

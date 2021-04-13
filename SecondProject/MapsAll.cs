@@ -1,47 +1,44 @@
 ﻿using System;
+
 namespace MapsAll
 {
     public class Maps
     {
-        
-
-        public static void FieldGenerator(string[,] field)
+        public static void FieldGenerator(string[,] field, int mapSize)
         {
-            Random rnd = new Random();
-            string[] fieldPoints = new[] { "˯", "˯", "˯", "˯", "˳", "˳", "˳", ".", "`", ",", ".", " ", " ", " ", " ", " ", " " };
+            
+            Random rnd = new();
+            string[] fieldPoints = new[] { "˯", "˯", "˯", "˯", "˳", "˳", "˳", ".", "`", ",", ".", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " };
+            string[] edgePoints = new[] { "▓" };
             int rndOut;
+            int edge = 16 * 6 + 5;
             int x = 0;
             int y = 0;
 
-            while (y < 8000)
+
+            while (y < mapSize)
             {
-                while (x < 8000)
+                while (x < mapSize)
                 {
-                    rndOut = rnd.Next(0, fieldPoints.Length);
-                    field[x, y] = fieldPoints[rndOut];
+                    if((x <= edge) | (y <= edge))
+                    {
+                        rndOut = rnd.Next(0, edgePoints.Length);
+                        field[x, y] = edgePoints[rndOut];
+                    }
+                    else if ((x >= mapSize - edge) | (y >= mapSize - edge))
+                    {
+                        rndOut = rnd.Next(0, edgePoints.Length);
+                        field[x, y] = edgePoints[rndOut];
+                    }
+                    else
+                    {
+                        rndOut = rnd.Next(0, fieldPoints.Length);
+                        field[x, y] = fieldPoints[rndOut];
+                    }
                     x++;
                 }
                 x = 0;
                 y++;
-            }
-
-            int test = 3990;
-            while (test >= 3990 ^ test >= 4010)
-            {
-                field[3990, test] = "█";
-                test++;
-            }
-            test = 3990;
-            while (test >= 3990 ^ test >= 4010)
-            {
-                field[4010, test] = "█";
-                test++;
-            }
-            test = 3990;
-            while (test >= 3990 ^ test >= 4010)
-            {
-                field[test, 3990] = "█";
-                test++;
             }
         }
     }
