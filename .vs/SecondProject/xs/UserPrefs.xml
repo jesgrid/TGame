@@ -1,10 +1,17 @@
 ﻿<Properties StartupConfiguration="{457BF5F1-C940-4D8D-8314-A1A2243F72BD}|Default">
   <MonoDevelop.Ide.ItemProperties.SecondProject PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="SecondProject/Program.cs">
+    <Files>
+      <File FileName="SecondProject/Program.cs" Line="5" Column="13" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SecondProject" expanded="True" selected="True" />
+          <Node name="SecondProject" expanded="True">
+            <Node name="SecondProject" expanded="True">
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>

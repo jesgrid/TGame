@@ -8,7 +8,9 @@ namespace MapsAll
         {
             
             Random rnd = new();
+            // Символы для заполнения "земли"
             string[] fieldPoints = new[] { "˯", "˯", "˯", "˯", "˳", "˳", "˳", ".", "`", ",", ".", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " };
+            // Крайние символы для 
             string[] edgePoints = new[] { "▓" };
             int rndOut;
             int edge = 16 * 6 + 5;
