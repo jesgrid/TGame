@@ -8,6 +8,8 @@ namespace FramePainterAll
             int scale = 6; // Размер окна
             int distanceX = 16 * scale;
             int distanceY = 9 * scale;
+            int rightMenuSize = scale * 3;
+            int leftMenuSize = scale * 2;
             int x;
             int y;
             string str = "";
@@ -30,7 +32,32 @@ namespace FramePainterAll
                 str = "";
                 while (x < xPlayer + distanceX)
                 {
-                    str += field[x, y];
+                    if (y > yPlayer + (distanceY / 2) - leftMenuSize)
+                    {
+                        if (y == yPlayer + (distanceY / 2) - leftMenuSize + 1)
+                        {
+                            str += "-";
+                        }
+                        else
+                        {
+                            str += "Y";
+                        }
+                    }
+                    else if (x > xPlayer + distanceX - rightMenuSize)
+                    {
+                        if (x > xPlayer + distanceX - rightMenuSize + 1)
+                        {
+                            str += "X";
+                        }
+                        else
+                        {
+                            str += "|";
+                        }
+                    }
+                    else
+                    {
+                        str += field[x, y];
+                    }
                     x++;
                 }
                 Console.WriteLine(str);
