@@ -3,7 +3,6 @@ using MapsAll;
 using FramePainterAll;
 using MovementAll;
 using Doing;
-using StructureGenerationAll;
 
 namespace SecondProject
 {
@@ -13,22 +12,12 @@ namespace SecondProject
         {
             ConsoleKeyInfo key;
             int mapSize = 4000; // Сторона квадрата карты
-            int xPlayer = mapSize / 2; // Позиция грока
+            int xPlayer = mapSize / 2; // Позиция игрока
             int yPlayer = mapSize / 2;
             string[,] field = new string[mapSize, mapSize]; // Основное поле
             string[,] fieldGhost = new string[mapSize, mapSize]; // Вспомогательное поле для восстановления основного после изменений
 
             Maps.FieldGenerator(field, mapSize); //Генерация карты
-
-            //Для тестов
-            int xStartPoint = 2003;
-            int yStartPoint = xStartPoint;
-            int wallX = xStartPoint + 40;
-            int wallY = xStartPoint + 25;
-            field = StructureGeneration.BoxGeneration(wallX, wallY, xStartPoint, yStartPoint, field);
-
-
-
             Array.Copy(field, fieldGhost, field.Length);
             field[xPlayer, yPlayer] = "Ṽ";
             FramePainter.FieldPainter(xPlayer, yPlayer, field); // Прорисовка первого кадра

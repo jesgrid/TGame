@@ -1,5 +1,5 @@
 ﻿using System;
-
+using StructureGenerationAll;
 namespace MapsAll
 {
     public class Maps
@@ -10,7 +10,7 @@ namespace MapsAll
             Random rnd = new();
             // Символы для заполнения "земли"
             string[] fieldPoints = new[] { "˯", "˯", "˯", "˯", "˳", "˳", "˳", ".", "`", ",", ".", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " };
-            // Крайние символы для 
+            // Крайние, непроходимые символы для карты
             string[] edgePoints = new[] { "▓" };
             int rndOut;
             int edge = 16 * 6 + 5;
@@ -42,6 +42,7 @@ namespace MapsAll
                 x = 0;
                 y++;
             }
+            StructureGeneration.HouseGeneration(9, 14, 2001, 2001, field);
         }
     }
 }

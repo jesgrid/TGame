@@ -1,15 +1,16 @@
 ﻿<Properties StartupConfiguration="{457BF5F1-C940-4D8D-8314-A1A2243F72BD}|Default">
   <MonoDevelop.Ide.ItemProperties.SecondProject PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SecondProject/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SecondProject/MapsAll.cs">
     <Files>
-      <File FileName="SecondProject/Program.cs" Line="5" Column="13" />
+      <File FileName="SecondProject/Program.cs" Line="44" Column="31" />
+      <File FileName="SecondProject/MapsAll.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SecondProject" expanded="True">
             <Node name="SecondProject" expanded="True">
-              <Node name="Program.cs" selected="True" />
+              <Node name="MapsAll.cs" selected="True" />
             </Node>
           </Node>
         </State>
