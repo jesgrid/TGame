@@ -3,20 +3,55 @@ namespace StructureGenerationAll
 {
     public class StructureGeneration
     {
-        static void HouseGeneration()
+        public static void HouseGeneration(int wallX, int wallY, int xStartPoint, int yStartPoint, string[,] buildField)
         {
-            int maxWall = 40;
-            int minWall = maxWall / 2;
+            BoxGeneration(wallX, wallY, xStartPoint, yStartPoint, buildField);
+
+            wallX += xStartPoint;
+            wallY += yStartPoint;
             Random rnd = new();
-            int wall_x = rnd.Next(minWall, maxWall);
-            int wall_y = rnd.Next(minWall, maxWall);
+            int exitExist = rnd.Next(0, 3);
+            int x;
+            int y;
+
+
+            switch (exitExist)
+            {
+                case 0:
+                    x = xStartPoint;
+                    y = rnd.Next(yStartPoint + 1, wallY - 1);
+                    buildField[x, y] = "⎕";
+                    break;
+                case 1:
+                    x = wallX - 1;
+                    y = rnd.Next(yStartPoint + 1, wallY - 1);
+                    buildField[x, y] = "⎕";
+                    break;
+                case 2:
+                    y = yStartPoint;
+                    x = rnd.Next(xStartPoint + 1, wallX - 1);
+                    buildField[x, y] = "⎕";
+                    break;
+                case 3:
+                    y = wallY - 1;
+                    x = rnd.Next(xStartPoint + 1, wallX - 1);
+                    buildField[x, y] = "⎕";
+                    break;
+                default:
+                    break;
+            }
         }
 
 
-        public static string[,] BoxGeneration(int wallX, int wallY, int xStartPoint, int yStartPoint, string[,] buildField)
+
+        private static void BoxGeneration(int wallX, int wallY, int xStartPoint, int yStartPoint, string[,] buildField)
         {
+            
+            wallX += xStartPoint;
+            wallY += yStartPoint;
             int x = xStartPoint;
             int y = yStartPoint;
+
 
             while (yStartPoint < wallY)
             {
@@ -35,30 +70,7 @@ namespace StructureGenerationAll
                 xStartPoint = x;
                 yStartPoint++;
             }
-            return buildField;
+
         }
-
-
-
-        //public static string[,] BoxGeneration(int wall_x, int wall_y)
-        //{
-        //    string[,] buildField = new string[wall_x, wall_y];
-
-        //    for (int i = 0; i < wall_y; i++)
-        //    {
-        //        for (int j = 0; j < wall_x; j++)
-        //        {
-        //            if (i < 1 | j < 1 || i == wall_y - 1 | j == wall_x - 1)
-        //            {
-        //                buildField[j, i] = "█";
-        //            }
-        //            else
-        //            {
-        //                buildField[j, i] = " ";
-        //            }
-        //        }
-        //    }
-        //    return buildField;
-        //}
     }  
 }
