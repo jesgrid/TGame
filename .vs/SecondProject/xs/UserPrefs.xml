@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.ItemProperties.SecondProject PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="SecondProject/MapsAll.cs">
     <Files>
-      <File FileName="SecondProject/Program.cs" Line="44" Column="31" />
-      <File FileName="SecondProject/MapsAll.cs" Line="1" Column="1" />
+      <File FileName="SecondProject/StructureGenerationAll.cs" Line="30" Column="45" />
+      <File FileName="SecondProject/MapsAll.cs" Line="45" Column="78" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,6 +14,9 @@
             </Node>
           </Node>
         </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
