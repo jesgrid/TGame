@@ -14,12 +14,12 @@ namespace SecondProject
             int mapSize = 4000; // Сторона квадрата карты
             int xPlayer = mapSize / 2; // Позиция игрока
             int yPlayer = mapSize / 2;
-            string[,] field = new string[mapSize, mapSize]; // Основное поле
-            string[,] fieldGhost = new string[mapSize, mapSize]; // Вспомогательное поле для восстановления основного после изменений
+            char[,] field = new char[mapSize, mapSize]; // Основное поле
+            char[,] fieldGhost = new char[mapSize, mapSize]; // Вспомогательное поле для восстановления основного после изменений
 
             Maps.FieldGenerator(field, mapSize); //Генерация карты
             Array.Copy(field, fieldGhost, field.Length);
-            field[xPlayer, yPlayer] = "Ṽ";
+            field[xPlayer, yPlayer] = 'Ṽ';
             FramePainter.FieldPainter(xPlayer, yPlayer, field); // Прорисовка первого кадра
 
             do

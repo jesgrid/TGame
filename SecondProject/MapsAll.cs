@@ -4,14 +4,14 @@ namespace MapsAll
 {
     public class Maps
     {
-        public static void FieldGenerator(string[,] field, int mapSize)
+        public static void FieldGenerator(char[,] field, int mapSize)
         {
             
             Random rnd = new();
             // Символы для заполнения "земли"
-            string[] fieldPoints = new[] { "˯", "˯", "˯", "˯", "˳", "˳", "˳", ".", "`", ",", ".", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " };
+            char[] fieldPoints = new[] { '˯', '˯', '˯', '˯', '˳', '˳', '˳', '.', '`', ',', '.', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
             // Крайние, непроходимые символы для карты
-            string[] edgePoints = new[] { "▓" };
+            char[] edgePoints = new[] { '▓' };
             int rndOut;
             int edge = 16 * 6 + 5;
             int x = 0;

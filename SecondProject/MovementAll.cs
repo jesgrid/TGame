@@ -6,7 +6,7 @@ namespace MovementAll
 {
     public class Movement
     {
-        public static (int, int) PlayerMove(int xPlayer, int yPlayer, Move move , string[,] field, string[,] fieldGhost)
+        public static (int, int) PlayerMove(int xPlayer, int yPlayer, Move move , char[,] field, char[,] fieldGhost)
         {
             field[xPlayer, yPlayer] = fieldGhost[xPlayer, yPlayer];
 
@@ -28,7 +28,7 @@ namespace MovementAll
             }
 
 
-            string[] impassablePoints = new[] { "█", "▓" };
+            char[] impassablePoints = new[] { '█', '▓' };
 
             for (int i = 0; i < impassablePoints.Length; i++) // Отмена действия в случае коллизии с непроходимыми объектами
             {
@@ -53,7 +53,7 @@ namespace MovementAll
             }
 
 
-            field[xPlayer, yPlayer] = "Ṽ";
+            field[xPlayer, yPlayer] = 'Ṽ';
             FramePainter.FieldPainter(xPlayer, yPlayer, field);
             return (xPlayer, yPlayer);
         }

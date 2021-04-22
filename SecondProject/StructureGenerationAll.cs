@@ -4,7 +4,7 @@ namespace StructureGenerationAll
     public class StructureGeneration
     {
 
-        public static void SmallVillageGeneration(int xSideLength, int ySideLength, int xStartPoint, int yStartPoint, string[,] buildField)
+        public static void SmallVillageGeneration(int xSideLength, int ySideLength, int xStartPoint, int yStartPoint, char[,] buildField)
         {
             int houseNumber = xSideLength + ySideLength; 
             Random rnd = new();
@@ -95,7 +95,7 @@ namespace StructureGenerationAll
 
 
 
-        private static void HouseGeneration(int xWall, int yWall, int xStartPoint, int yStartPoint, string[,] buildField)
+        private static void HouseGeneration(int xWall, int yWall, int xStartPoint, int yStartPoint, char[,] buildField)
         {
             BoxGeneration(xWall, yWall, xStartPoint, yStartPoint, buildField);
 
@@ -112,22 +112,22 @@ namespace StructureGenerationAll
                 case 0:
                     x = xStartPoint;
                     y = rnd.Next(yStartPoint + 1, yWall - 1);
-                    buildField[x, y] = "⎕";
+                    buildField[x, y] = '⎕';
                     break;
                 case 1:
                     x = xWall - 1;
                     y = rnd.Next(yStartPoint + 1, yWall - 1);
-                    buildField[x, y] = "⎕";
+                    buildField[x, y] = '⎕';
                     break;
                 case 2:
                     y = yStartPoint;
                     x = rnd.Next(xStartPoint + 1, xWall - 1);
-                    buildField[x, y] = "⎕";
+                    buildField[x, y] = '⎕';
                     break;
                 case 3:
                     y = yWall - 1;
                     x = rnd.Next(xStartPoint + 1, xWall - 1);
-                    buildField[x, y] = "⎕";
+                    buildField[x, y] = '⎕';
                     break;
                 default:
                     break;
@@ -136,7 +136,7 @@ namespace StructureGenerationAll
 
 
 
-        private static void BoxGeneration(int xWall, int yWall, int xStartPoint, int yStartPoint, string[,] buildField)
+        private static void BoxGeneration(int xWall, int yWall, int xStartPoint, int yStartPoint, char[,] buildField)
         {
 
             xWall += xStartPoint;
@@ -151,11 +151,11 @@ namespace StructureGenerationAll
                 {
                     if (yStartPoint <= y | xStartPoint <= x || yStartPoint == yWall - 1 | xStartPoint == xWall - 1)
                     {
-                        buildField[xStartPoint, yStartPoint] = "█";
+                        buildField[xStartPoint, yStartPoint] = '█';
                     }
                     else
                     {
-                        buildField[xStartPoint, yStartPoint] = " ";
+                        buildField[xStartPoint, yStartPoint] = ' ';
                     }
                     xStartPoint++;
                 }
