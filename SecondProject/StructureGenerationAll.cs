@@ -4,10 +4,12 @@ namespace StructureGenerationAll
     public class StructureGeneration
     {
 
-        public static void SmallVillageGeneration(int houseNumber, int xSideLength, int ySideLength, int xStartPoint, int yStartPoint, string[,] buildField)
+        public static void SmallVillageGeneration(int xSideLength, int ySideLength, int xStartPoint, int yStartPoint, string[,] buildField)
         {
+            int houseNumber = 200;
             Random rnd = new();
-            int minStreetWidth = 2;
+            //int minStreetWidth = 2;
+            strC:
             int[] xStartPoints = new int[houseNumber];
             int[] yStartPoints = new int[houseNumber];
             int[] xWalls = new int[houseNumber];
@@ -28,22 +30,66 @@ namespace StructureGenerationAll
                 yStartPoints[i] = rnd.Next(yStartPoint, yStartPoint + ySideLength - yWalls[i]);
             }
 
-            /*
-            Удаление коллизий (пока неудачно)
 
-            int homeLength = 0;
-            int Lines = 0;
-            
-            for (int i = 0; homeLength < xSideLength - xWalls[^1] | i < houseNumber; i++)
+            int[,] collisionSearch = new int[xSideLength, ySideLength];
+
+            for (int j = 0; j < ySideLength; j++)
             {
-                homeLength += xStartPoints[i] + xWalls[i] + minStreetWidth;
-                if(i < houseNumber & homeLength >= xSideLength - xWalls[^1])
+                for (int k = 0; k < xSideLength; k++)
                 {
-                    Lines++;
-                    homeLength = 0;
+                    collisionSearch[k, j] = 0;
                 }
             }
-            */
+
+
+            int test;
+            int cikle = 0;
+
+            bool rpt = false;
+            for (int i = 0; i < houseNumber; i++)
+            {
+                if (rpt == true)
+                {
+                    i--;
+                    rpt = false;
+                }
+                for (int j = yStartPoints[i] - yStartPoint; j <= yStartPoints[i] - yStartPoint + yWalls[i]; j++)
+                {
+                    for (int k = xStartPoints[i] - xStartPoint; k <= xStartPoints[i] - xStartPoint + xWalls[i]; k++)
+                    {
+                        test = collisionSearch[k, j] + 1;
+                        if (test >= 2)
+                        {
+                            xStartPoints[i] = rnd.Next(xStartPoint, xStartPoint + xSideLength - xWalls[i]);
+                            yStartPoints[i] = rnd.Next(yStartPoint, yStartPoint + ySideLength - yWalls[i]);
+                            rpt = true;
+                            j = yWalls[i];
+                        }
+                    }
+                }
+                if (rpt == true)
+                {
+                    Console.WriteLine($"Переделываем!{i}");
+                    cikle++;
+                    if (cikle == 10)
+                    {
+                        houseNumber -= 5;
+                        goto strC;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Ок!{i}");
+                    for (int j = yStartPoints[i] - yStartPoint; j <= yStartPoints[i] - yStartPoint + yWalls[i]; j++)
+                    {
+                        for (int k = xStartPoints[i] - xStartPoint; k <= xStartPoints[i] - xStartPoint + xWalls[i]; k++)
+                        {
+                            collisionSearch[k, j] = 1;
+                        }
+                    }
+                }
+            }
+            
             for (int i = 0; i < houseNumber; i++)
             {
                 HouseGeneration(xWalls[i], yWalls[i], xStartPoints[i], yStartPoints[i], buildField);

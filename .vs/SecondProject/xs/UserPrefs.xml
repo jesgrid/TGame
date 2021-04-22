@@ -1,27 +1,24 @@
 ﻿<Properties StartupConfiguration="{457BF5F1-C940-4D8D-8314-A1A2243F72BD}|Default">
   <MonoDevelop.Ide.ItemProperties.SecondProject PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SecondProject/MapsAll.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SecondProject/StructureGenerationAll.cs">
     <Files>
-      <File FileName="SecondProject/StructureGenerationAll.cs" Line="30" Column="45" />
-      <File FileName="SecondProject/MapsAll.cs" Line="45" Column="78" />
+      <File FileName="SecondProject/StructureGenerationAll.cs" Line="38" Column="14" />
+      <File FileName="SecondProject/MapsAll.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SecondProject" expanded="True">
             <Node name="SecondProject" expanded="True">
-              <Node name="MapsAll.cs" selected="True" />
+              <Node name="StructureGenerationAll.cs" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
