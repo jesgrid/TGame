@@ -6,15 +6,14 @@ namespace StructureGenerationAll
 
         public static void SmallVillageGeneration(int xSideLength, int ySideLength, int xStartPoint, int yStartPoint, string[,] buildField)
         {
-            int houseNumber = 200;
+            int houseNumber = xSideLength + ySideLength; 
             Random rnd = new();
-            //int minStreetWidth = 2;
-            strC:
+            newStart: // Заметка для себя: Реализовать по другому, когда появится идея!
             int[] xStartPoints = new int[houseNumber];
             int[] yStartPoints = new int[houseNumber];
             int[] xWalls = new int[houseNumber];
             int[] yWalls = new int[houseNumber];
-            for (int i = 0; i < houseNumber; i++)
+            for (int i = 0; i < houseNumber; i++) // Рандомная генерация параметров для всех зданий
             {
                 if (i >= houseNumber / 2)
                 {
@@ -31,7 +30,7 @@ namespace StructureGenerationAll
             }
 
 
-            int[,] collisionSearch = new int[xSideLength, ySideLength];
+            int[,] collisionSearch = new int[xSideLength, ySideLength]; // Массив для поиска коллизий
 
             for (int j = 0; j < ySideLength; j++)
             {
@@ -42,44 +41,42 @@ namespace StructureGenerationAll
             }
 
 
-            int test;
-            int cikle = 0;
+            int numberOfLoops = 0;
+            bool loop = false;
 
-            bool rpt = false;
-            for (int i = 0; i < houseNumber; i++)
+            for (int i = 0; i < houseNumber; i++) // Тест на коллизии
             {
-                if (rpt == true)
+                if (loop == true)
                 {
                     i--;
-                    rpt = false;
+                    loop = false;
                 }
                 for (int j = yStartPoints[i] - yStartPoint; j <= yStartPoints[i] - yStartPoint + yWalls[i]; j++)
                 {
                     for (int k = xStartPoints[i] - xStartPoint; k <= xStartPoints[i] - xStartPoint + xWalls[i]; k++)
                     {
-                        test = collisionSearch[k, j] + 1;
-                        if (test >= 2)
+                        int collisionTest = collisionSearch[k, j] + 1;
+                        if (collisionTest >= 2) // Изменение точек расположения конкретного дома
                         {
                             xStartPoints[i] = rnd.Next(xStartPoint, xStartPoint + xSideLength - xWalls[i]);
                             yStartPoints[i] = rnd.Next(yStartPoint, yStartPoint + ySideLength - yWalls[i]);
-                            rpt = true;
+                            loop = true;
                             j = yWalls[i];
                         }
                     }
                 }
-                if (rpt == true)
+                if (loop == true) // Уменьшение колличества домов в случае множественных повторов поиска позиции дома. Сброс вычислений
                 {
-                    Console.WriteLine($"Переделываем!{i}");
-                    cikle++;
-                    if (cikle == 10)
+                    numberOfLoops++;
+                    if (numberOfLoops == 10)
                     {
                         houseNumber -= 5;
-                        goto strC;
+                        goto newStart;
                     }
                 }
-                else
+                else // запись занятых позиций в массив collisionSearch
                 {
-                    Console.WriteLine($"Ок!{i}");
+                    numberOfLoops = 0; // Сброс счётцика
                     for (int j = yStartPoints[i] - yStartPoint; j <= yStartPoints[i] - yStartPoint + yWalls[i]; j++)
                     {
                         for (int k = xStartPoints[i] - xStartPoint; k <= xStartPoints[i] - xStartPoint + xWalls[i]; k++)
@@ -98,7 +95,7 @@ namespace StructureGenerationAll
 
 
 
-        public static void HouseGeneration(int xWall, int yWall, int xStartPoint, int yStartPoint, string[,] buildField)
+        private static void HouseGeneration(int xWall, int yWall, int xStartPoint, int yStartPoint, string[,] buildField)
         {
             BoxGeneration(xWall, yWall, xStartPoint, yStartPoint, buildField);
 
@@ -110,7 +107,7 @@ namespace StructureGenerationAll
             int y;
 
 
-            switch (exitExist)
+            switch (exitExist) // Генерация двери с исключением угловых блоков коробки
             {
                 case 0:
                     x = xStartPoint;
@@ -147,7 +144,7 @@ namespace StructureGenerationAll
             int x = xStartPoint;
             int y = yStartPoint;
 
-
+            // Генерация коробки стен и её внутреннего пространства
             while (yStartPoint < yWall)
             {
                 while (xStartPoint < xWall)

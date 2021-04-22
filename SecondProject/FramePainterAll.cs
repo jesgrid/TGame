@@ -23,7 +23,7 @@ namespace FramePainterAll
             Console.WriteLine(str);
 
 
-            // Вывод отображаемй части поля
+            // Вывод отображаемой части поля
             x = xPlayer - distanceX;
             y = yPlayer - distanceY / 2;
 
@@ -32,7 +32,7 @@ namespace FramePainterAll
                 str = "";
                 while (x < xPlayer + distanceX)
                 {
-                    if (y > yPlayer + (distanceY / 2) - leftMenuSize)
+                    if (y > yPlayer + (distanceY / 2) - leftMenuSize) // Нижний HUD
                     {
                         if (y == yPlayer + (distanceY / 2) - leftMenuSize + 1)
                         {
@@ -43,7 +43,7 @@ namespace FramePainterAll
                             str += "Y";
                         }
                     }
-                    else if (x > xPlayer + distanceX - rightMenuSize)
+                    else if (x > xPlayer + distanceX - rightMenuSize) // Правый HUD
                     {
                         if (x > xPlayer + distanceX - rightMenuSize + 1)
                         {

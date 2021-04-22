@@ -11,7 +11,7 @@ namespace MovementAll
             field[xPlayer, yPlayer] = fieldGhost[xPlayer, yPlayer];
 
 
-            switch (move)
+            switch (move) // Действие
             {
                 case Move.moveUp:
                     yPlayer -= 1;
@@ -30,7 +30,7 @@ namespace MovementAll
 
             string[] impassablePoints = new[] { "█", "▓" };
 
-            for (int i = 0; i < impassablePoints.Length; i++)
+            for (int i = 0; i < impassablePoints.Length; i++) // Отмена действия в случае коллизии с непроходимыми объектами
             {
                 if (field[xPlayer, yPlayer] == impassablePoints[i])
                 {

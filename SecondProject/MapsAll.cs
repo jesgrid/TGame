@@ -42,7 +42,7 @@ namespace MapsAll
                 x = 0;
                 y++;
             }
-            StructureGeneration.SmallVillageGeneration(200, 100, 1950, 1950, field);
+            StructureGeneration.SmallVillageGeneration(200, 100, 1950, 1950, field); //Для теста
         }
     }
 }

@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.ItemProperties.SecondProject PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="SecondProject/StructureGenerationAll.cs">
     <Files>
-      <File FileName="SecondProject/StructureGenerationAll.cs" Line="38" Column="14" />
-      <File FileName="SecondProject/MapsAll.cs" />
+      <File FileName="SecondProject/Program.cs" Line="1" Column="1" />
+      <File FileName="SecondProject/StructureGenerationAll.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
