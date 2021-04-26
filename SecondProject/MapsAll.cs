@@ -6,7 +6,6 @@ namespace MapsAll
     {
         public static void FieldGenerator(char[,] field, int mapSize)
         {
-            
             Random rnd = new();
             // Символы для заполнения "земли"
             char[] fieldPoints = new[] { '˯', '˯', '˯', '˯', '˳', '˳', '˳', '.', '`', ',', '.', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
@@ -42,7 +41,50 @@ namespace MapsAll
                 x = 0;
                 y++;
             }
-            StructureGeneration.SmallVillageGeneration(200, 100, 1950, 1950, field); //Для теста
+        }
+        public static void DownFieldGenerator(char[,] field, int mapSize)
+        {
+            Random rnd = new();
+            char[] fieldPoints = new[] { '▓' };
+            int rndOut;
+            int x = 0;
+            int y = 0;
+
+
+            while (y < mapSize)
+            {
+                while (x < mapSize)
+                {
+                    rndOut = rnd.Next(0, fieldPoints.Length);
+                    field[x, y] = fieldPoints[rndOut];
+                    x++;
+                }
+                x = 0;
+                y++;
+            }
+            // Для теста
+            StructureGeneration.BigCaveGeneration(8, 2000, 2000, field);
+        }
+        public static void SecondFloursGenerator(char[,] field, int mapSize)
+        {
+            Random rnd = new();
+            char[] fieldPoints = new[] { ' ' };
+            int rndOut;
+            int x = 0;
+            int y = 0;
+
+
+            while (y < mapSize)
+            {
+                while (x < mapSize)
+                {
+                    rndOut = rnd.Next(0, fieldPoints.Length);
+                    field[x, y] = fieldPoints[rndOut];
+                    x++;
+                }
+                x = 0;
+                y++;
+            }
         }
     }
 }

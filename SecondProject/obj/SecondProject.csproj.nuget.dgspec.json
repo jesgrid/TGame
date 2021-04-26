@@ -14,7 +14,7 @@
         "outputPath": "/Users/ba_980/Desktop/tgame/SecondProject/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/ba_980/.nuget/NuGet/NuGet.Config"
+          "/Users/ba_980/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"

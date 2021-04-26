@@ -1,4 +1,5 @@
 ﻿using System;
+using Doing;
 namespace StructureGenerationAll
 {
     public class StructureGeneration
@@ -138,7 +139,6 @@ namespace StructureGenerationAll
 
         private static void BoxGeneration(int xWall, int yWall, int xStartPoint, int yStartPoint, char[,] buildField)
         {
-
             xWall += xStartPoint;
             yWall += yStartPoint;
             int x = xStartPoint;
@@ -163,6 +163,72 @@ namespace StructureGenerationAll
                 yStartPoint++;
             }
 
+        }
+
+        public static void BigCaveGeneration(int sizeOfCave, int xStartPoint, int yStartPoint, char[,] buildField)
+        {
+            for(int i = 0; i <= sizeOfCave; i++)
+            {
+                CaveGeneration(sizeOfCave, xStartPoint, yStartPoint, buildField);
+            }
+        }
+
+        public static void CaveGeneration(int sizeOfCave, int xStartPoint, int yStartPoint, char[,] buildField)
+        {
+            sizeOfCave *= 100;
+            int x = xStartPoint;
+            int y = yStartPoint;
+            Random rnd = new();
+            Array values = Enum.GetValues(typeof(Move));
+
+            for (int i = y - 3; i <= y + 3; i++)
+            {
+                for (int j = x - 3; j <= x + 3; j++)
+                {
+                    buildField[j, i] = ' ';
+                }
+            }
+
+            for (int k = 0; k < sizeOfCave; k++)
+            {
+                Move mv = (Move)values.GetValue(rnd.Next(values.Length));
+                int room = rnd.Next(0, 20);
+                switch (mv)
+                {
+                    case Move.moveUp:
+                        y -= 3;
+                        break;
+                    case Move.moveDown:
+                        y += 3;
+                        break;
+                    case Move.moveLeft:
+                        x -= 3;
+                        break;
+                    case Move.moveRight:
+                        x += 3;
+                        break;
+                }
+                if (room == 0)
+                {
+                    for (int i = y - 4; i <= y + 4; i++)
+                    {
+                        for (int j = x - 6; j <= x + 6; j++)
+                        {
+                            buildField[j, i] = ' ';
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = y - 1; i <= y + 1; i++)
+                    {
+                        for (int j = x - 1; j <= x + 1; j++)
+                        {
+                            buildField[j, i] = ' ';
+                        }
+                    }
+                }
+            }
         }
     }  
 }

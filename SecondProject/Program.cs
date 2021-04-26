@@ -16,9 +16,14 @@ namespace SecondProject
             int yPlayer = mapSize / 2;
             char[,] field = new char[mapSize, mapSize]; // Основное поле
             char[,] fieldGhost = new char[mapSize, mapSize]; // Вспомогательное поле для восстановления основного после изменений
+            char[,] downField = new char[mapSize, mapSize]; // "Массив для карты подземелий"
+            char[,] secondFloursField = new char[mapSize, mapSize]; // "Массив для вторых этажей зданий"
 
             Maps.FieldGenerator(field, mapSize); //Генерация карты
             Array.Copy(field, fieldGhost, field.Length);
+            Maps.DownFieldGenerator(downField, mapSize);
+            Maps.SecondFloursGenerator(secondFloursField, mapSize);
+
             field[xPlayer, yPlayer] = 'Ṽ';
             FramePainter.FieldPainter(xPlayer, yPlayer, field); // Прорисовка первого кадра
 
@@ -48,7 +53,7 @@ namespace SecondProject
 
                 Console.Clear();
                 Console.WriteLine(key.Key.ToString());
-                (xPlayer, yPlayer) = Movement.PlayerMove(xPlayer, yPlayer, move, field, fieldGhost);
+                (xPlayer, yPlayer) = Movement.PlayerMove(xPlayer, yPlayer, move, downField, fieldGhost);
 
             } while (key.Key != ConsoleKey.Escape);
             return;
