@@ -41,6 +41,7 @@ namespace MapsAll
                 x = 0;
                 y++;
             }
+            
         }
         public static void DownFieldGenerator(char[,] field, int mapSize)
         {

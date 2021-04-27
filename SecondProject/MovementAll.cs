@@ -6,9 +6,9 @@ namespace MovementAll
 {
     public class Movement
     {
-        public static (int, int) PlayerMove(int xPlayer, int yPlayer, Move move , char[,] field, char[,] fieldGhost)
+        public static (int, int, char) PlayerMove(int xPlayer, int yPlayer, Move move , char pointUnderPlayer, char[,] field)
         {
-            field[xPlayer, yPlayer] = fieldGhost[xPlayer, yPlayer];
+            field[xPlayer, yPlayer] = pointUnderPlayer;
 
 
             switch (move) // Действие
@@ -52,10 +52,10 @@ namespace MovementAll
                 }
             }
 
-
+            pointUnderPlayer = field[xPlayer, yPlayer];
             field[xPlayer, yPlayer] = 'Ṽ';
             FramePainter.FieldPainter(xPlayer, yPlayer, field);
-            return (xPlayer, yPlayer);
+            return (xPlayer, yPlayer, pointUnderPlayer);
         }
     }
 }

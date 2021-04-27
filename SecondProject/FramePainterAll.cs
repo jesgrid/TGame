@@ -20,8 +20,7 @@ namespace FramePainterAll
             {
                 strB.Append('=');
             }
-            Console.WriteLine(strB);
-
+            strB.Append('\n');
 
             // Вывод отображаемой части поля
             x = xPlayer - distanceX;
@@ -29,7 +28,6 @@ namespace FramePainterAll
 
             while (y < yPlayer + (distanceY / 2))
             {
-                _ = strB.Remove(0, strB.Length);
                 while (x < xPlayer + distanceX)
                 {
                     if (y > yPlayer + (distanceY / 2) - leftMenuSize) // Нижний HUD
@@ -60,10 +58,11 @@ namespace FramePainterAll
                     }
                     x++;
                 }
-                Console.WriteLine(strB);
+                strB.Append('\n');
                 x = xPlayer - distanceX;
                 y++;
             }
+            Console.WriteLine(strB);
         }
     }
 }

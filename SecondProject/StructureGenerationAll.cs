@@ -139,10 +139,12 @@ namespace StructureGenerationAll
 
         private static void BoxGeneration(int xWall, int yWall, int xStartPoint, int yStartPoint, char[,] buildField)
         {
+            Random rnd = new();
             xWall += xStartPoint;
             yWall += yStartPoint;
             int x = xStartPoint;
             int y = yStartPoint;
+            int ledderSpawnRnd = rnd.Next(40);
 
             // Генерация коробки стен и её внутреннего пространства
             while (yStartPoint < yWall)
@@ -161,6 +163,12 @@ namespace StructureGenerationAll
                 }
                 xStartPoint = x;
                 yStartPoint++;
+            }
+
+            if (ledderSpawnRnd > 35)
+            {
+                buildField[x + 1, y + 1] = 'ᛝ';
+                SecondProject.Program.downField[x + 1, y + 1] = 'ᛝ';
             }
 
         }

@@ -1,0 +1,4 @@
+/Users/ba_980/Desktop/tgame/SecondProject/bin/Release/net5.0/publish/SecondProject.dll
+/Users/ba_980/Desktop/tgame/SecondProject/bin/Release/net5.0/publish/SecondProject.deps.json
+/Users/ba_980/Desktop/tgame/SecondProject/bin/Release/net5.0/publish/SecondProject.runtimeconfig.json
+/Users/ba_980/Desktop/tgame/SecondProject/bin/Release/net5.0/publish/SecondProject.pdb
