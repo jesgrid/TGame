@@ -4,7 +4,7 @@ namespace FramePainterAll
 {
     public class FramePainter
     {
-        public static void FieldPainter(int xPlayer, int yPlayer, char[,] field)
+        public static void FieldPainter(int xPlayer, int yPlayer, int z, char[,,] field)
         {
             int scale = 6; // Размер окна
             int distanceX = 16 * scale;
@@ -54,7 +54,7 @@ namespace FramePainterAll
                     }
                     else
                     {
-                        strB.Append(field[x, y]);
+                        strB.Append(field[x, y, z]);
                     }
                     x++;
                 }

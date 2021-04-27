@@ -5,7 +5,7 @@ namespace StructureGenerationAll
     public class StructureGeneration
     {
 
-        public static void SmallVillageGeneration(int xSideLength, int ySideLength, int xStartPoint, int yStartPoint, char[,] buildField)
+        public static void SmallVillageGeneration(int z, int xSideLength, int ySideLength, int xStartPoint, int yStartPoint, char[,,] buildField)
         {
             int houseNumber = xSideLength + ySideLength; 
             Random rnd = new();
@@ -90,15 +90,15 @@ namespace StructureGenerationAll
             
             for (int i = 0; i < houseNumber; i++)
             {
-                HouseGeneration(xWalls[i], yWalls[i], xStartPoints[i], yStartPoints[i], buildField);
+                HouseGeneration(z, xWalls[i], yWalls[i], xStartPoints[i], yStartPoints[i], buildField);
             }
         }
 
 
 
-        private static void HouseGeneration(int xWall, int yWall, int xStartPoint, int yStartPoint, char[,] buildField)
+        private static void HouseGeneration(int z, int xWall, int yWall, int xStartPoint, int yStartPoint, char[,,] buildField)
         {
-            BoxGeneration(xWall, yWall, xStartPoint, yStartPoint, buildField);
+            BoxGeneration(z, xWall, yWall, xStartPoint, yStartPoint, buildField);
 
             xWall += xStartPoint;
             yWall += yStartPoint;
@@ -113,22 +113,22 @@ namespace StructureGenerationAll
                 case 0:
                     x = xStartPoint;
                     y = rnd.Next(yStartPoint + 1, yWall - 1);
-                    buildField[x, y] = '⎕';
+                    buildField[x, y, z] = '⎕';
                     break;
                 case 1:
                     x = xWall - 1;
                     y = rnd.Next(yStartPoint + 1, yWall - 1);
-                    buildField[x, y] = '⎕';
+                    buildField[x, y, z] = '⎕';
                     break;
                 case 2:
                     y = yStartPoint;
                     x = rnd.Next(xStartPoint + 1, xWall - 1);
-                    buildField[x, y] = '⎕';
+                    buildField[x, y, z] = '⎕';
                     break;
                 case 3:
                     y = yWall - 1;
                     x = rnd.Next(xStartPoint + 1, xWall - 1);
-                    buildField[x, y] = '⎕';
+                    buildField[x, y, z] = '⎕';
                     break;
                 default:
                     break;
@@ -137,7 +137,7 @@ namespace StructureGenerationAll
 
 
 
-        private static void BoxGeneration(int xWall, int yWall, int xStartPoint, int yStartPoint, char[,] buildField)
+        private static void BoxGeneration(int z, int xWall, int yWall, int xStartPoint, int yStartPoint, char[,,] buildField)
         {
             Random rnd = new();
             xWall += xStartPoint;
@@ -153,11 +153,11 @@ namespace StructureGenerationAll
                 {
                     if (yStartPoint <= y | xStartPoint <= x || yStartPoint == yWall - 1 | xStartPoint == xWall - 1)
                     {
-                        buildField[xStartPoint, yStartPoint] = '█';
+                        buildField[xStartPoint, yStartPoint, z] = '█';
                     }
                     else
                     {
-                        buildField[xStartPoint, yStartPoint] = ' ';
+                        buildField[xStartPoint, yStartPoint, z] = ' ';
                     }
                     xStartPoint++;
                 }
@@ -167,21 +167,21 @@ namespace StructureGenerationAll
 
             if (ledderSpawnRnd > 35)
             {
-                buildField[x + 1, y + 1] = 'ᛝ';
-                SecondProject.Program.downField[x + 1, y + 1] = 'ᛝ';
+                buildField[x + 1, y + 1, z] = 'ᛝ';
+                buildField[x + 1, y + 1, z - 1] = 'ᛝ';
             }
 
         }
 
-        public static void BigCaveGeneration(int sizeOfCave, int xStartPoint, int yStartPoint, char[,] buildField)
+        public static void BigCaveGeneration(int z, int sizeOfCave, int xStartPoint, int yStartPoint, char[,,] buildField)
         {
             for(int i = 0; i <= sizeOfCave; i++)
             {
-                CaveGeneration(sizeOfCave, xStartPoint, yStartPoint, buildField);
+                CaveGeneration(z, sizeOfCave, xStartPoint, yStartPoint, buildField);
             }
         }
 
-        public static void CaveGeneration(int sizeOfCave, int xStartPoint, int yStartPoint, char[,] buildField)
+        public static void CaveGeneration(int z, int sizeOfCave, int xStartPoint, int yStartPoint, char[,,] buildField)
         {
             sizeOfCave *= 100;
             int x = xStartPoint;
@@ -193,7 +193,7 @@ namespace StructureGenerationAll
             {
                 for (int j = x - 3; j <= x + 3; j++)
                 {
-                    buildField[j, i] = ' ';
+                    buildField[j, i, z] = ' ';
                 }
             }
 
@@ -222,7 +222,7 @@ namespace StructureGenerationAll
                     {
                         for (int j = x - 6; j <= x + 6; j++)
                         {
-                            buildField[j, i] = ' ';
+                            buildField[j, i, z] = ' ';
                         }
                     }
                 }
@@ -232,7 +232,7 @@ namespace StructureGenerationAll
                     {
                         for (int j = x - 1; j <= x + 1; j++)
                         {
-                            buildField[j, i] = ' ';
+                            buildField[j, i, z] = ' ';
                         }
                     }
                 }

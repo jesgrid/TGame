@@ -4,7 +4,7 @@ namespace MapsAll
 {
     public class Maps
     {
-        public static void FieldGenerator(char[,] field, int mapSize)
+        public static void FieldGenerator(int z, char[,,] field, int mapSize)
         {
             Random rnd = new();
             // Символы для заполнения "земли"
@@ -24,17 +24,17 @@ namespace MapsAll
                     if((x <= edge) | (y <= edge))
                     {
                         rndOut = rnd.Next(0, edgePoints.Length);
-                        field[x, y] = edgePoints[rndOut];
+                        field[x, y, z] = edgePoints[rndOut];
                     }
                     else if ((x >= mapSize - edge) | (y >= mapSize - edge))
                     {
                         rndOut = rnd.Next(0, edgePoints.Length);
-                        field[x, y] = edgePoints[rndOut];
+                        field[x, y, z] = edgePoints[rndOut];
                     }
                     else
                     {
                         rndOut = rnd.Next(0, fieldPoints.Length);
-                        field[x, y] = fieldPoints[rndOut];
+                        field[x, y, z] = fieldPoints[rndOut];
                     }
                     x++;
                 }
@@ -43,7 +43,7 @@ namespace MapsAll
             }
             
         }
-        public static void DownFieldGenerator(char[,] field, int mapSize)
+        public static void DownFieldGenerator(int z, char[,,] field, int mapSize)
         {
             Random rnd = new();
             char[] fieldPoints = new[] { '▓' };
@@ -57,16 +57,16 @@ namespace MapsAll
                 while (x < mapSize)
                 {
                     rndOut = rnd.Next(0, fieldPoints.Length);
-                    field[x, y] = fieldPoints[rndOut];
+                    field[x, y, z] = fieldPoints[rndOut];
                     x++;
                 }
                 x = 0;
                 y++;
             }
             // Для теста
-            StructureGeneration.BigCaveGeneration(8, 2000, 2000, field);
+            StructureGeneration.BigCaveGeneration(4, 8, 2000, 2000, field);
         }
-        public static void SecondFloursGenerator(char[,] field, int mapSize)
+        public static void SecondFloursGenerator(int z, char[,,] field, int mapSize)
         {
             Random rnd = new();
             char[] fieldPoints = new[] { ' ' };
@@ -80,7 +80,7 @@ namespace MapsAll
                 while (x < mapSize)
                 {
                     rndOut = rnd.Next(0, fieldPoints.Length);
-                    field[x, y] = fieldPoints[rndOut];
+                    field[x, y, z] = fieldPoints[rndOut];
                     x++;
                 }
                 x = 0;

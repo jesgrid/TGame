@@ -12,30 +12,35 @@ namespace SecondProject
         static int mapSize = 4000; // Сторона квадрата карты
         static int xPlayer = mapSize / 2; // Позиция игрока
         static int yPlayer = mapSize / 2;
-        internal static char[,] mainField = new char[mapSize, mapSize]; // Основное поле
-        internal static char[,] fieldGhost = new char[mapSize, mapSize]; // Вспомогательное поле для восстановления основного после изменений
-        internal static char[,] downField = new char[mapSize, mapSize]; // "Массив для карты подземелий"
-        internal static char[,] secondFloursField = new char[mapSize, mapSize]; // "Массив для вторых этажей зданий"
+        static int zPlayer = 5;
+        internal static char[,,] worldField = new char[mapSize, mapSize, 10]; // "ПОДУМОЙ!!!!!"
         /*
-        internal static char[,,] worldField = new char[mapSize, mapSize, 80]; // "ПОДУМОЙ!!!!!"
         Переделай StructureGenerationAll по классам!
         Вынеси рандом, СДЕЛАЙ ЕГО ЕДИНЫМ!
         */
         static void Main(string[] args)
         {
             ConsoleKeyInfo key;
-            Maps.FieldGenerator(mainField, mapSize); //Генерация карты
-            Array.Copy(mainField, fieldGhost, mainField.Length);
-            Maps.DownFieldGenerator(downField, mapSize);
-            Maps.SecondFloursGenerator(secondFloursField, mapSize);
+            Maps.FieldGenerator(5, worldField, mapSize); //Генерация карты
+            Maps.DownFieldGenerator(4, worldField, mapSize);
+            Maps.SecondFloursGenerator(6, worldField, mapSize);
 
-            char pointUnderPlayer = mainField[xPlayer, yPlayer];
-            mainField[xPlayer, yPlayer] = 'Ṽ';
-            FramePainter.FieldPainter(xPlayer, yPlayer, mainField); // Прорисовка первого кадра
+
+            Maps.SecondFloursGenerator(0, worldField, mapSize);
+            Maps.SecondFloursGenerator(1, worldField, mapSize);
+            Maps.SecondFloursGenerator(2, worldField, mapSize);
+            Maps.SecondFloursGenerator(3, worldField, mapSize);
+            Maps.SecondFloursGenerator(7, worldField, mapSize);
+            Maps.SecondFloursGenerator(8, worldField, mapSize);
+            Maps.SecondFloursGenerator(9, worldField, mapSize);
+
+            char pointUnderPlayer = worldField[xPlayer, yPlayer, zPlayer];
+            worldField[xPlayer, yPlayer, zPlayer] = 'Ṽ';
+            FramePainter.FieldPainter(xPlayer, yPlayer, zPlayer, worldField); // Прорисовка первого кадра
             
 
-            char[,] field = mainField;
-            StructureGeneration.SmallVillageGeneration(200, 200, 1900, 1900, field);
+            //char[,] field = mainField;
+            StructureGeneration.SmallVillageGeneration(5, 200, 200, 1900, 1900, worldField);
             do
             {
                 Move move = Move.moveOnPoint;
@@ -55,31 +60,18 @@ namespace SecondProject
                         move = Move.moveRight;
                         break;
                     case "Spacebar":
-                        switch (pointUnderPlayer)
-                        {
-                            case 'ᛝ':
-                                if (field == mainField)
-                                {
-                                    field[xPlayer, yPlayer] = pointUnderPlayer;
-                                    pointUnderPlayer = downField[xPlayer, yPlayer];
-                                    field = downField;
-                                }
-                                else if (field == downField)
-                                {
-                                    field[xPlayer, yPlayer] = pointUnderPlayer;
-                                    pointUnderPlayer = mainField[xPlayer, yPlayer];
-                                    field = mainField;
-                                }
-                                break;
-                        }
+                        move = Move.moveTop;
+                        break;
+                    case "C":
+                        move = Move.moveLower;
                         break;
                     default:
                         break;
                 }
 
                 Console.Clear();
-                //Console.WriteLine(key.Key.ToString());
-                (xPlayer, yPlayer, pointUnderPlayer) = Movement.PlayerMove(xPlayer, yPlayer, move, pointUnderPlayer, field);
+                Console.WriteLine(key.Key.ToString());
+                (xPlayer, yPlayer, zPlayer, pointUnderPlayer) = Movement.PlayerMove(xPlayer, yPlayer, zPlayer, move, pointUnderPlayer, worldField);
 
             } while (key.Key != ConsoleKey.Escape);
             return;
