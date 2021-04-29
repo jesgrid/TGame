@@ -63,8 +63,6 @@ namespace MapsAll
                 x = 0;
                 y++;
             }
-            // Для теста
-            StructureGeneration.BigCaveGeneration(4, 8, 2000, 2000, field);
         }
         public static void SecondFloursGenerator(int z, char[,,] field, int mapSize)
         {

@@ -22,6 +22,17 @@ namespace FramePainterAll
             }
             strB.Append('\n');
 
+            // Расчёт параметров меню
+            string levelViewer = "";
+            int strLevelViewer = 0;
+            bool boolLevelViewer = false;
+            levelViewer += $"Высота: {z}       ";
+            strLevelViewer += levelViewer.Length;
+
+
+
+
+
             // Вывод отображаемой части поля
             x = xPlayer - distanceX;
             y = yPlayer - distanceY / 2;
@@ -45,7 +56,16 @@ namespace FramePainterAll
                     {
                         if (x > xPlayer + distanceX - rightMenuSize + 1)
                         {
-                            strB.Append('X');
+                            if (x > xPlayer + distanceX - rightMenuSize + 1 & boolLevelViewer == false)
+                            {
+                                boolLevelViewer = true;
+                                strB.Append(levelViewer);
+                                x += strLevelViewer - 1;
+                            }
+                            else
+                            {
+                                strB.Append('X');
+                            }
                         }
                         else
                         {

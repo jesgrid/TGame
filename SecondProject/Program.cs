@@ -13,33 +13,33 @@ namespace SecondProject
         static int xPlayer = mapSize / 2; // Позиция игрока
         static int yPlayer = mapSize / 2;
         static int zPlayer = 5;
-        internal static char[,,] worldField = new char[mapSize, mapSize, 10]; // "ПОДУМОЙ!!!!!"
-        /*
-        Переделай StructureGenerationAll по классам!
-        Вынеси рандом, СДЕЛАЙ ЕГО ЕДИНЫМ!
-        */
+        internal static char[,,] worldField = new char[mapSize, mapSize, 10];
+
         static void Main(string[] args)
         {
             ConsoleKeyInfo key;
-            Maps.FieldGenerator(5, worldField, mapSize); //Генерация карты
-            Maps.DownFieldGenerator(4, worldField, mapSize);
-            Maps.SecondFloursGenerator(6, worldField, mapSize);
 
 
-            Maps.SecondFloursGenerator(0, worldField, mapSize);
-            Maps.SecondFloursGenerator(1, worldField, mapSize);
-            Maps.SecondFloursGenerator(2, worldField, mapSize);
-            Maps.SecondFloursGenerator(3, worldField, mapSize);
-            Maps.SecondFloursGenerator(7, worldField, mapSize);
-            Maps.SecondFloursGenerator(8, worldField, mapSize);
-            Maps.SecondFloursGenerator(9, worldField, mapSize);
+            //Генерация карты
+            Maps.FieldGenerator(5, worldField, mapSize); 
+            for (int i = 0; i < 5; i++)
+            {
+                Maps.DownFieldGenerator(i, worldField, mapSize);
+            }
+            for (int i = 9; i > 5; i--)
+            {
+                Maps.SecondFloursGenerator(i, worldField, mapSize);
+            }
 
+
+            // Прорисовка первого кадра
             char pointUnderPlayer = worldField[xPlayer, yPlayer, zPlayer];
             worldField[xPlayer, yPlayer, zPlayer] = 'Ṽ';
-            FramePainter.FieldPainter(xPlayer, yPlayer, zPlayer, worldField); // Прорисовка первого кадра
-            
+            FramePainter.FieldPainter(xPlayer, yPlayer, zPlayer, worldField);
 
-            //char[,] field = mainField;
+
+            // Для теста
+            //StructureGeneration.BigCaveGeneration(4, 8, 2000, 2000, worldField);
             StructureGeneration.SmallVillageGeneration(5, 200, 200, 1900, 1900, worldField);
             do
             {

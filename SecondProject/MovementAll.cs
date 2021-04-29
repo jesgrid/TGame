@@ -33,6 +33,15 @@ namespace MovementAll
                     break;
             }
 
+            if (zPlayer > 9)
+            {
+                zPlayer = 9;
+            }
+            else if (zPlayer < 0)
+            {
+                zPlayer = 0;
+            }
+
             if (zTest != zPlayer)
             {
                 char[] passablePoints = new[] { 'ᛝ' };

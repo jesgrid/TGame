@@ -99,16 +99,45 @@ namespace StructureGenerationAll
         private static void HouseGeneration(int z, int xWall, int yWall, int xStartPoint, int yStartPoint, char[,,] buildField)
         {
             BoxGeneration(z, xWall, yWall, xStartPoint, yStartPoint, buildField);
-
-            xWall += xStartPoint;
-            yWall += yStartPoint;
             Random rnd = new();
-            int exitExist = rnd.Next(0, 3);
             int x;
             int y;
+            int rndChance;
+            // Генерация погреба
+            bool caveExist = false;
+            rndChance = rnd.Next(100);
+            if (rndChance < 50)
+            {
+                CaveGeneration(z - 1, 1, xStartPoint, yStartPoint, buildField);
+                caveExist = true;
+            }
 
 
-            switch (exitExist) // Генерация двери с исключением угловых блоков коробки
+            // Генерация этажей
+            int levelCheck = 0;
+            bool prevFlourExist = true;
+            for (int i = z + 1; i <= 9; i++)
+            {
+                if (prevFlourExist)
+                {
+                    rndChance = rnd.Next(100);
+                    if (rndChance < 40)
+                    {
+                        BoxGeneration(i, xWall, yWall, xStartPoint, yStartPoint, buildField);
+                        levelCheck++;
+                    }
+                    else
+                    {
+                        prevFlourExist = false;
+                    }
+                }
+            }
+
+            // Генерация двери с исключением угловых блоков коробки
+            int exitExist = rnd.Next(0, 3);
+            xWall += xStartPoint;
+            yWall += yStartPoint;
+            switch (exitExist) 
             {
                 case 0:
                     x = xStartPoint;
@@ -133,6 +162,77 @@ namespace StructureGenerationAll
                 default:
                     break;
             }
+            
+            // Генерация лестниц
+            switch (exitExist)
+            {
+                case 0:
+                    x = xWall - 2;
+                    y = rnd.Next(yStartPoint + 1, yWall - 1);
+                    if (levelCheck != 0)
+                    {
+                        for (int i = 0; i <= levelCheck; i++)
+                        {
+                            buildField[x, y, z + i] = 'ᛝ';
+                        }
+                    }
+                    if (buildField[x, y, z - 1] == ' ' & caveExist)
+                    {
+                        buildField[x, y, z] = 'ᛝ';
+                        buildField[x, y, z - 1] = 'ᛝ';
+                    }
+                    break;
+                case 1:
+                    x = xStartPoint + 1;
+                    y = rnd.Next(yStartPoint + 1, yWall - 1);
+                    if (levelCheck != 0)
+                    {
+                        for (int i = 0; i <= levelCheck; i++)
+                        {
+                            buildField[x, y, z + i] = 'ᛝ';
+                        }
+                    }
+                    if (buildField[x, y, z - 1] == ' ' & caveExist)
+                    {
+                        buildField[x, y, z] = 'ᛝ';
+                        buildField[x, y, z - 1] = 'ᛝ';
+                    }
+                    break;
+                case 2:
+                    y = yWall - 2;
+                    x = rnd.Next(xStartPoint + 1, xWall - 1);
+                    if (levelCheck != 0)
+                    {
+                        for (int i = 0; i <= levelCheck; i++)
+                        {
+                            buildField[x, y, z + i] = 'ᛝ';
+                        }
+                    }
+                    if (buildField[x, y, z - 1] == ' ' & caveExist)
+                    {
+                        buildField[x, y, z] = 'ᛝ';
+                        buildField[x, y, z - 1] = 'ᛝ';
+                    }
+                    break;
+                case 3:
+                    y = yStartPoint + 1;
+                    x = rnd.Next(xStartPoint + 1, xWall - 1);
+                    if (levelCheck != 0)
+                    {
+                        for (int i = 0; i <= levelCheck; i++)
+                        {
+                            buildField[x, y, z + i] = 'ᛝ';
+                        }
+                    }
+                    if (buildField[x, y, z - 1] == ' ' & caveExist)
+                    {
+                        buildField[x, y, z] = 'ᛝ';
+                        buildField[x, y, z - 1] = 'ᛝ';
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
 
@@ -144,7 +244,6 @@ namespace StructureGenerationAll
             yWall += yStartPoint;
             int x = xStartPoint;
             int y = yStartPoint;
-            int ledderSpawnRnd = rnd.Next(40);
 
             // Генерация коробки стен и её внутреннего пространства
             while (yStartPoint < yWall)
@@ -164,26 +263,24 @@ namespace StructureGenerationAll
                 xStartPoint = x;
                 yStartPoint++;
             }
-
-            if (ledderSpawnRnd > 35)
-            {
-                buildField[x + 1, y + 1, z] = 'ᛝ';
-                buildField[x + 1, y + 1, z - 1] = 'ᛝ';
-            }
-
         }
+
+
 
         public static void BigCaveGeneration(int z, int sizeOfCave, int xStartPoint, int yStartPoint, char[,,] buildField)
         {
+            sizeOfCave *= 2;
             for(int i = 0; i <= sizeOfCave; i++)
             {
                 CaveGeneration(z, sizeOfCave, xStartPoint, yStartPoint, buildField);
             }
         }
 
+
+
         public static void CaveGeneration(int z, int sizeOfCave, int xStartPoint, int yStartPoint, char[,,] buildField)
         {
-            sizeOfCave *= 100;
+            sizeOfCave *= 50;
             int x = xStartPoint;
             int y = yStartPoint;
             Random rnd = new();
@@ -200,7 +297,7 @@ namespace StructureGenerationAll
             for (int k = 0; k < sizeOfCave; k++)
             {
                 Move mv = (Move)values.GetValue(rnd.Next(values.Length));
-                int room = rnd.Next(0, 20);
+                int room = rnd.Next(100);
                 switch (mv)
                 {
                     case Move.moveUp:
@@ -216,7 +313,7 @@ namespace StructureGenerationAll
                         x += 3;
                         break;
                 }
-                if (room == 0)
+                if (room < 20)
                 {
                     for (int i = y - 4; i <= y + 4; i++)
                     {
